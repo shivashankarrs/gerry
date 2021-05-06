@@ -221,13 +221,13 @@ if __name__ == '__main__':
     xvalid  = np.load('/lt/work/shiva/Fairness/biasbios_location/emnlp_dev_cls_tc.npy')
     xtest  = np.load('/lt/work/shiva/Fairness/biasbios_location/emnlp_test_cls_tc.npy')
 
-    with open('/home/sssub/aidalight-backup/data/emnlp_train_bios_twoclass.pickle', 'rb') as f:
+    with open('/lt/work/shiva/Fairness/biasbios_location/emnlp_train_bios_twoclass.pickle', 'rb') as f:
         traindata = pickle.load(f)
     
-    with open('/home/sssub/aidalight-backup/data/emnlp_dev_bios_twoclass.pickle', 'rb') as f:
+    with open('/lt/work/shiva/Fairness/biasbios_location/emnlp_dev_bios_twoclass.pickle', 'rb') as f:
         valdata = pickle.load(f)
     
-    with open('/home/sssub/aidalight-backup/data/emnlp_test_bios_twoclass.pickle', 'rb') as f:
+    with open('/lt/work/shiva/Fairness/biasbios_location/emnlp_test_bios_twoclass.pickle', 'rb') as f:
         testdata = pickle.load(f)
     
     from collections import Counter
