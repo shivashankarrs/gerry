@@ -22,10 +22,12 @@ Please download the data used for this project from the [link](https://drive.goo
 
 ## Citation
 
-```@inproceedings{subramanian2021evaluating,
+```
+@inproceedings{subramanian2021evaluating,
   title={Evaluating Debiasing Techniques for Intersectional Biases},
   author={Subramanian, Shivashankar and Han, Xudong and Baldwin, Timothy and Cohn, Trevor and Frermann, Lea},
   booktitle={Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},
   pages={2492--2498},
   year={2021}
-}```
+}
+```
