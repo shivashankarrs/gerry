@@ -44,18 +44,9 @@ print("FI " + fi.version.__version__)
 
 max_len = 40
 lang = "English"
-encode_dir = (
-    "/home/sssub/intersectional_bias/Multilingual_Fairness_LREC-master/data/encode/"
-    + lang
-    + "/"
-)
-indices_dir = (
-    "/home/sssub/intersectional_bias/Multilingual_Fairness_LREC-master/data/indices/"
-    + lang
-    + "/"
-)
-wt_dir = "/home/sssub/intersectional_bias/Multilingual_Fairness_LREC-master/resources/weight/"
-res_dir = "/home/sssub/intersectional_bias/Multilingual_Fairness_LREC-master/resources/classifier/"
+indices_dir = "./data/indices/" + lang + "/"  #input data path
+wt_dir = "./resources/weight/"  #path for word embeddings
+res_dir = "./resources/classifier/"   #stores results
 BATCH_SIZE = 64
 
 from tensorflow_constrained_optimization.python.rates import basic_expression
@@ -1074,7 +1065,7 @@ def constrained_optimization(lang, odir, nu=0.0001, weighted=True):
 
 if __name__ == "__main__":
 
-    odir = "/home/sssub/intersectional_bias/Multilingual_Fairness_LREC-master/publish/results/hatespeech/TFCO/"
+    odir = "/output/directory/"
 
     for weighted in [True, False]:
         # for weighted in [False]:

@@ -25,14 +25,13 @@ np.random.seed(1)
 
 MAX_SEQUENCE_LENGTH = 768
 
-tp_output_dir = "./data/bios/output/"
-res_dir = "./data/bios/representation/"
+
+res_dir = "./data/bios/representation/" #stores the hidden representations
 
 
 def build_mlp(xtrain, ytrain, xvalid, yvalid, xtest, ytest):
-    """Train, valid, test RNN
-    lang: The language name
-    odir: output directory of prediction results
+    """
+    Train, valid, test for MLP model. This is the unconstrained model, which doesn't optimize for fairness. Representations are saved for running INLP approach.
     """
     hidden_size = 300
     epochs = 10
@@ -112,22 +111,28 @@ def load_dictionary(path):
 
 if __name__ == "__main__":
 
-    xtrain = np.load("/lt/work/shiva/Fairness/biasbios_location/emnlp_train_cls_tc.npy")
-    xvalid = np.load("/lt/work/shiva/Fairness/biasbios_location/emnlp_dev_cls_tc.npy")
-    xtest = np.load("/lt/work/shiva/Fairness/biasbios_location/emnlp_test_cls_tc.npy")
+    tp_output_dir = "./data/bios/output/"
+    biasbios_train_raw = "emnlp_train_cls_tc.npy"
+    biasbios_valid_raw = "emnlp_dev_cls_tc.npy"
+    biasbios_test_raw = "emnlp_test_cls_tc.npy"
 
-    with open(
-        "/home/sssub/aidalight-backup/data/emnlp_train_bios_twoclass.pickle", "rb"
+    biasbios_train_embed = "emnlp_train_bios_twoclass.pickle"
+    biasbios_valid_embed = "emnlp_dev_bios_twoclass.pickle"
+    biasbios_test_embed = "emnlp_test_bios_twoclass.pickle"
+
+    xtrain = np.load(biasbios_train_raw)
+    xvalid = np.load(biasbios_valid_raw)
+    xtest = np.load(biasbios_test_raw)
+
+    with open(biasbios_train_embed, "rb"
     ) as f:
         traindata = pickle.load(f)
 
-    with open(
-        "/home/sssub/aidalight-backup/data/emnlp_dev_bios_twoclass.pickle", "rb"
+    with open(biasbios_valid_embed, "rb"
     ) as f:
         valdata = pickle.load(f)
 
-    with open(
-        "/home/sssub/aidalight-backup/data/emnlp_test_bios_twoclass.pickle", "rb"
+    with open(biasbios_test_embed, "rb"
     ) as f:
         testdata = pickle.load(f)
 
@@ -150,7 +155,7 @@ if __name__ == "__main__":
     valid_economy = []
     test_economy = []
 
-    prof2index = load_dictionary("professions.txt")
+    prof2index = load_dictionary("../resources/professions.txt")
 
     for data in traindata:
         _label = 1 if data["p"] == "surgeon" else 0

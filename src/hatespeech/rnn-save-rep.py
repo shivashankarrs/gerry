@@ -25,15 +25,13 @@ def build_rnn(lang, odir):
     lang: The language name
     odir: output directory of prediction results
     """
-    doc_idx = 2
     rnn_size = 200
     max_len = 40  # sequence length
     epochs = 3
 
-    encode_dir = "./data/encode/" + lang + "/"
-    indices_dir = "./data/indices/" + lang + "/"
-    wt_dir = "./resources/weight/"
-    res_dir = "./resources/classifier/"
+    indices_dir = "./data/indices/" + lang + "/"  #input data path
+    wt_dir = "./resources/weight/"  #path for word embeddings
+    res_dir = "./resources/classifier/"   #stores results
 
     # clf_path = res_dir + lang + '.clf'
     # don't reload classifier for debug usage

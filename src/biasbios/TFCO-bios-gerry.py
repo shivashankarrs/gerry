@@ -22,11 +22,7 @@ from tensorflow.keras.layers import Bidirectional, GRU
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.models import Model
 from tensorflow.keras import optimizers
-
 import sys
-
-sys.path.append("../")
-
 import evaluator, random, math, pickle
 import pandas as pd
 
@@ -65,7 +61,7 @@ print("FI " + fi.version.__version__)
 
 BATCH_SIZE = 64
 MAX_SEQUENCE_LENGTH = 768
-odir = "/home/sssub/intersectional_bias/Multilingual_Fairness_LREC-master/publish/results/biasbios/tfco/"
+odir = "/output/directory"
 
 bios_keymapping = {
     "gender": {0: "male", 1: "female"},
@@ -500,22 +496,27 @@ def constrained_optimization(
 
 if __name__ == "__main__":
 
-    xtrain = np.load("/lt/work/shiva/Fairness/biasbios_location/emnlp_train_cls_tc.npy")
-    xvalid = np.load("/lt/work/shiva/Fairness/biasbios_location/emnlp_dev_cls_tc.npy")
-    xtest = np.load("/lt/work/shiva/Fairness/biasbios_location/emnlp_test_cls_tc.npy")
+    xtrain_path = "emnlp_train_cls_tc.npy"
+    xvalid_path = "emnlp_dev_cls_tc.npy"
+    xtest_path = "emnlp_test_cls_tc.npy"
 
-    with open(
-        "/home/sssub/aidalight-backup/data/emnlp_train_bios_twoclass.pickle", "rb"
+    xtrain = np.load(xtrain_path)
+    xvalid = np.load(xvalid_path)
+    xtest = np.load(xtest_path)
+
+    biasbios_train_embed = "emnlp_train_bios_twoclass.pickle"
+    biasbios_valid_embed = "emnlp_dev_bios_twoclass.pickle"
+    biasbios_test_embed = "emnlp_test_bios_twoclass.pickle"
+
+    with open(biasbios_train_embed, "rb"
     ) as f:
         traindata = pickle.load(f)
 
-    with open(
-        "/home/sssub/aidalight-backup/data/emnlp_dev_bios_twoclass.pickle", "rb"
+    with open(biasbios_valid_embed, "rb"
     ) as f:
         valdata = pickle.load(f)
 
-    with open(
-        "/home/sssub/aidalight-backup/data/emnlp_test_bios_twoclass.pickle", "rb"
+    with open(biasbios_test_embed, "rb"
     ) as f:
         testdata = pickle.load(f)
 
